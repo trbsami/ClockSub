@@ -40,7 +40,6 @@
     .my-btn-hiddify-outline {
       --bs-btn-color: var(--my-blue-color);
       --bs-btn-border-color: var(--my-blue-color);
-      --bs-btn-bg: transparent;
       --bs-btn-hover-color: #fff;
       --bs-btn-hover-bg: var(--my-blue-color);
       --bs-btn-active-color: #fff;
@@ -48,18 +47,16 @@
     }
     
     .my-btn-singbox-outline {
-      --bs-btn-color: #ffffff;
-      --bs-btn-border-color: #ffffff;
-      --bs-btn-bg: transparent;
+      --bs-btn-color: #fff;
+      --bs-btn-border-color: #fff;
       --bs-btn-hover-color: #000;
-      --bs-btn-hover-bg: #ffffff;
+      --bs-btn-hover-bg: #fff;
       --bs-btn-active-color: #000;
-      --bs-btn-active-bg: #ffffff;
+      --bs-btn-active-bg: #fff;
     }
 
     .my-btn-outline, .my-btn-neutral {
       --bs-btn-color: var(--my-heading-color);
-      --bs-btn-bg: transparent;
       --bs-btn-border-color: var(--my-alpha-dark-gray-color);
       --bs-btn-hover-color: var(--my-heading-color);
       --bs-btn-hover-bg: var(--my-gray-color);
@@ -71,7 +68,6 @@
     }
 
     .my-btn-neutral {
-      --bs-btn-color: #fff;
       --bs-btn-bg: rgb(50, 50, 50);
       --bs-btn-hover-bg: rgb(65, 65, 65);
       --bs-btn-active-bg: rgb(75, 75, 75);
@@ -99,7 +95,7 @@
     
     .my-block .bi {
       font-size: 1.1rem;
-      color: #ffffff !important;
+      color: #fff !important;
     }
     
     .my-block-big {
@@ -113,7 +109,7 @@
 
     .my-step-counter {
       display: block;
-      color: #ffffff !important;
+      color: #fff !important;
       font-weight: 500;
       font-size: 2.5rem;
       user-select: none;
@@ -186,7 +182,15 @@
 
     .config-link-copy-btn:hover,
     .config-link-copy-btn.copied {
-      background-color: #151515;
+      background-color: var(--my-gray-color);
+    }
+
+    .traffic-value {
+      font-family: var(--bs-body-font-family);
+      direction: ltr;
+      display: inline-block;
+      text-align: left;
+      width: 100%;
     }
 
     @media (min-width: 576px) {
@@ -208,7 +212,7 @@
     <symbol id="person-fill" viewBox="0 0 16 16"><path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></symbol>
     <symbol id="calendar3" viewBox="0 0 16 16"><path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"/></symbol>
     <symbol id="arrow-down-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5m-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5"/></symbol>
-    <symbol id="emoji-smile-fill" viewBox="0 0 16 16"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5M4.285 9.567a.5.5 0 0 1 .683.183A3.5 3.5 0 0 0 8 11.5a3.5 3.5 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683M10 8c-.552 0-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5S10.552 8 10 8"/></symbol>
+    <symbol id="emoji-smile-fill" viewBox="0 0 16 16"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m-2.715 5.933a.5.5 0 0 1 .683.183A3.5 3.5 0 0 0 8 11.5a3.5 3.5 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683M10 8c-.552 0-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5S10.552 8 10 8"/></symbol>
     <symbol id="emoji-frown-fill" viewBox="0 0 16 16"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m-2.715 5.933a.5.5 0 0 1-.183-.683A4.5 4.5 0 0 1 8 9.5a4.5 4.5 0 0 1 3.898 2.25.5.5 0 0 1-.866.5A3.5 3.5 0 0 0 8 10.5a3.5 3.5 0 0 0-3.032 1.75.5.5 0 0 1-.683.183M10 8c-.552 0-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5S10.552 8 10 8"/></symbol>
     <symbol id="telegram" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.03-.1.06-.2-.06-.3s-.34-.04-.49-.03c-.21.03-3.53 2.23-4.92 3.3-.42.33-.8.49-1.14.48-.38-.01-1.08-.21-1.6-.38-.65-.22-1.17-.34-1.13-.73.03-.32.85-.62 1.68-.95z"/></symbol>
     <symbol id="wifi" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21l3.6-4.8c-1.2-1-2.6-1.6-4.2-1.6-1.6 0-3 .6-4.2 1.6L12 21m0-18C7.95 3 4.21 4.34 1.2 6.6L3 9c2.5-1.9 5.5-3 8.7-3s6.2 1.1 8.7 3l1.8-2.4C19.8 4.34 16.05 3 12 3m0 6c-2.7 0-5.19.89-7.2 2.4l1.8 2.4C8.1 12.67 9.97 12 12 12c2.03 0 3.9.67 5.4 1.8l1.8-2.4C17.19 9.89 14.7 9 12 9z"/></symbol>
@@ -253,7 +257,7 @@
             <svg class="bi me-2 mb-0 mb-sm-2"><use href="#arrow-down-up"></use></svg>
             <h5 class="my-text-heading mb-0">ترافیک</h5>
           </div>
-          <p class="text-truncate my-text-content mb-0" x-text="getText"></p>
+          <p class="text-truncate my-text-content mb-0" x-html="getText"></p>
         </div>
       </div>
     </div>
@@ -364,6 +368,22 @@
   <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
   <script>
     document.addEventListener('alpine:init', () => {
+      const formatBytes = (bytes) => {
+        if (!bytes || bytes.toString().startsWith('{')) return '0';
+        bytes = parseInt(bytes);
+        if (bytes === 0) return '0 B';
+        
+        const units = ['B', 'KB', 'MB', 'GB', 'TB'];
+        let i = 0;
+        
+        while (bytes >= 1024 && i < units.length - 1) {
+          bytes /= 1024;
+          i++;
+        }
+        
+        return `${bytes.toFixed(2)} ${units[i]}`;
+      };
+
       Alpine.data('configLinks', () => ({
         subscriptionUrl: '{{ user.subscription_url }}',
         links: [{% for link in user.links %}'{{ link }}'{% if not loop.last %}, {% endif %}{% endfor %}],
@@ -371,23 +391,66 @@
         getLinkName(link) {
           if (link === this.subscriptionUrl) return 'لینک اشتراک';
           
-          const protocols = {
+          const protocolMap = {
             'vmess://': () => {
-              try { return JSON.parse(atob(link.replace('vmess://', ''))).ps || 'کانفیگ VMESS'; } 
-              catch { return 'کانفیگ VMESS'; }
+              try { 
+                const config = JSON.parse(atob(link.replace('vmess://', '')));
+                return config.ps || 'کانفیگ VMESS';
+              } catch { 
+                return 'کانفیگ VMESS'; 
+              }
             },
-            'vless://': 'کانفیگ VLESS',
-            'trojan://': 'کانفیگ Trojan',
-            'ss://': 'کانفیگ Shadowsocks',
-            'ssr://': 'کانفیگ ShadowsocksR',
-            'http': 'لینک اشتراک'
+            'vless://': () => {
+              try {
+                const url = new URL(link);
+                const params = new URLSearchParams(url.hash.slice(1));
+                return params.get('remark') || decodeURIComponent(url.hash.slice(1)) || 'کانفیگ VLESS';
+              } catch {
+                return 'کانفیگ VLESS';
+              }
+            },
+            'trojan://': () => {
+              try {
+                const url = new URL(link);
+                const params = new URLSearchParams(url.hash.slice(1));
+                return params.get('remark') || 'کانفیگ Trojan';
+              } catch {
+                return 'کانفیگ Trojan';
+              }
+            },
+            'ss://': () => {
+              try {
+                const decoded = atob(link.replace('ss://', '').split('@')[0]);
+                const parts = decoded.split(':');
+                return parts.length > 1 ? decodeURIComponent(parts[1]) || 'کانفیگ Shadowsocks' : 'کانفیگ Shadowsocks';
+              } catch {
+                return 'کانفیگ Shadowsocks';
+              }
+            },
+            'ssr://': () => {
+              try {
+                const decoded = atob(link.replace('ssr://', '').split('/')[0]);
+                const parts = decoded.split(':');
+                return parts.length > 5 ? decodeURIComponent(parts[5]) || 'کانفیگ ShadowsocksR' : 'کانفیگ ShadowsocksR';
+              } catch {
+                return 'کانفیگ ShadowsocksR';
+              }
+            }
           };
           
-          for (const [prefix, value] of Object.entries(protocols)) {
-            if (link.startsWith(prefix)) return typeof value === 'function' ? value() : value;
+          for (const [prefix, handler] of Object.entries(protocolMap)) {
+            if (link.startsWith(prefix)) {
+              return handler();
+            }
           }
           
-          return link.includes('#') ? decodeURIComponent(link.split('#')[1]) || 'لینک کانفیگ' : 'لینک کانفیگ';
+          try {
+            const url = new URL(link);
+            const params = new URLSearchParams(url.hash.slice(1));
+            return params.get('remark') || decodeURIComponent(url.hash.slice(1)) || 'لینک کانفیگ';
+          } catch {
+            return link.includes('#') ? decodeURIComponent(link.split('#')[1]) || 'لینک کانفیگ' : 'لینک کانفیگ';
+          }
         },
         
         copyLink(link, button) {
@@ -444,14 +507,26 @@
       }));
 
       Alpine.data('blockTraffic', () => ({
-        usedTraffic: '{{ user.used_traffic | bytesformat }}',
-        dataLimit: '{% if user.data_limit %}{{ user.data_limit | bytesformat }}{% endif %}',
+        usedTraffic: {{ user.used_traffic }},
+        dataLimit: {{ user.data_limit if user.data_limit else 'null' }},
+        
         getText() {
-          if (!this.dataLimit) return `${this.usedTraffic} / ∞`;
-          if (this.dataLimit.startsWith('{')) return 'ناشناس';
-          return `${this.usedTraffic} / ${this.dataLimit}`;
+          if (this.dataLimit === null || this.dataLimit === 'null') {
+            return `<span class="traffic-value">${formatBytes(this.usedTraffic)} / ∞</span>`;
+          }
+          
+          if (this.dataLimit.toString().startsWith('{')) {
+            return 'ناشناس';
+          }
+          
+          return `
+            <span class="traffic-value">
+              ${formatBytes(this.usedTraffic)} / ${formatBytes(this.dataLimit)}
+            </span>
+          `;
         }
       }));
+    });
   </script>
 </body>
 </html>
