@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="fa" dir="rtl" data-bs-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="قالب اختصاصی MrClock">
+  <meta name="theme-color" content="#151515">
+  <title>ناحیه کاربری</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
+  
+  <style>
+    :root {
+      --bs-body-font-family: "Vazirmatn", -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --bs-body-bg: #000000;
+      --my-gray-color: #151515;
+      --my-dark-gray-color: #1c1c1c;
+      --my-alpha-dark-gray-color: rgba(255, 255, 255, .15);
+      --my-heading-color: rgb(225, 225, 225);
+      --my-content-color: rgba(255, 255, 255, .55);
+      --my-modal-bg: #151515;
+      --my-blue-color: #0a85d1;
+    }
+
+    .btn {
+      transition: all 0.2s ease-in-out;
+      transform: translateY(0);
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .my-btn-hiddify-outline {
+      --bs-btn-color: var(--my-blue-color);
+      --bs-btn-border-color: var(--my-blue-color);
+      --bs-btn-bg: transparent;
+      --bs-btn-hover-color: #fff;
+      --bs-btn-hover-bg: var(--my-blue-color);
+      --bs-btn-active-color: #fff;
+      --bs-btn-active-bg: var(--my-blue-color);
+    }
+    
+    .my-btn-singbox-outline {
+      --bs-btn-color: #ffffff;
+      --bs-btn-border-color: #ffffff;
+      --bs-btn-bg: transparent;
+      --bs-btn-hover-color: #000;
+      --bs-btn-hover-bg: #ffffff;
+      --bs-btn-active-color: #000;
+      --bs-btn-active-bg: #ffffff;
+    }
+
+    .my-btn-outline, .my-btn-neutral {
+      --bs-btn-color: var(--my-heading-color);
+      --bs-btn-bg: transparent;
+      --bs-btn-border-color: var(--my-alpha-dark-gray-color);
+      --bs-btn-hover-color: var(--my-heading-color);
+      --bs-btn-hover-bg: var(--my-gray-color);
+      --bs-btn-active-color: var(--my-heading-color);
+      --bs-btn-active-bg: var(--my-dark-gray-color);
+      --bs-border-radius: 10px;
+      width: 100%;
+      padding: 0.5rem 1rem !important;
+    }
+
+    .my-btn-neutral {
+      --bs-btn-color: #fff;
+      --bs-btn-bg: rgb(50, 50, 50);
+      --bs-btn-hover-bg: rgb(65, 65, 65);
+      --bs-btn-active-bg: rgb(75, 75, 75);
+    }
+
+    .bi {
+      fill: currentColor;
+      width: 1em;
+      height: 1em;
+    }
+
+    .my-container {
+      max-width: 1024px;
+      padding: 75px 25px;
+    }
+
+    .my-block, .my-block-big {
+      border-radius: var(--bs-border-radius-xl);
+      background-color: var(--my-gray-color);
+    }
+
+    .my-block {
+      padding: 1rem;
+    }
+    
+    .my-block .bi {
+      font-size: 1.1rem;
+      color: #ffffff !important;
+    }
+    
+    .my-block-big {
+      padding: 1.5rem;
+      padding-top: .75rem;
+    }
+
+    .my-text-blue { color: var(--my-blue-color); }
+    .my-text-heading { color: var(--my-heading-color); }
+    .my-text-content { color: var(--my-content-color); }
+
+    .my-step-counter {
+      display: block;
+      color: #ffffff !important;
+      font-weight: 500;
+      font-size: 2.5rem;
+      user-select: none;
+    }
+
+    .my-step-counter::after {
+      content: counter(step-counter);
+      counter-increment: step-counter;
+    }
+
+    .my-tab-pane {
+      counter-reset: step-counter;
+    }
+
+    .download-buttons, .connection-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.95rem;
+    }
+    
+    .download-buttons .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border-radius: 10px;
+      padding: 0.5rem 1rem !important;
+    }
+
+    .modal.my-modal {
+      --bs-modal-bg: var(--my-modal-bg);
+      --bs-modal-border-radius: var(--bs-border-radius-xl);
+      --bs-modal-header-padding: 1.5rem 1.5rem 0;
+      --bs-modal-header-border-width: 0;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: var(--my-heading-color);
+      margin: 1.5rem 0 1rem;
+    }
+
+    .config-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.75rem;
+      background-color: var(--my-dark-gray-color);
+      border-radius: 10px;
+    }
+
+    .config-link-name {
+      font-weight: 500;
+      color: var(--my-heading-color);
+      flex-grow: 1;
+    }
+
+    .config-link-copy-btn {
+      min-width: 80px;
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+      background-color: var(--bs-body-bg);
+      color: white;
+      border: none;
+      transition: all 0.2s;
+      font-family: var(--bs-body-font-family);
+    }
+
+    .config-link-copy-btn:hover,
+    .config-link-copy-btn.copied {
+      background-color: #151515;
+    }
+
+    @media (min-width: 576px) {
+      .connection-buttons {
+        flex-direction: row;
+      }
+      .connection-buttons .btn {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="android" viewBox="0 0 24 24"><path fill="currentColor" d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24c-2.86-1.21-6.08-1.21-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.28.18-.37.54-.22.83L6.4 9.48C3.3 11.25 1.28 14.44 1 18h22c-.28-3.56-2.3-6.75-5.4-8.52zM7 15.25c-.69 0-1.25-.56-1.25-1.25S6.31 12.75 7 12.75s1.25.56 1.25 1.25S7.69 15.25 7 15.25zm10 0c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25z"/></symbol>
+    <symbol id="windows" viewBox="0 0 24 24"><path fill="currentColor" d="M3 3v8h8V3H3zm0 10v8h8v-8H3zm10 0v8h8v-8h-8zm0-10v8h8V3h-8z"/></symbol>
+    <symbol id="apple" viewBox="0 0 16 16"><path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-2.391.728-2.43m3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56s.625 1.924 1.273 2.796c.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758q.52-1.185.473-1.282"/></symbol>
+    <symbol id="plus" viewBox="0 0 16 16"><path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/></symbol>
+    <symbol id="person-fill" viewBox="0 0 16 16"><path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></symbol>
+    <symbol id="calendar3" viewBox="0 0 16 16"><path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"/></symbol>
+    <symbol id="arrow-down-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5m-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5"/></symbol>
+    <symbol id="emoji-smile-fill" viewBox="0 0 16 16"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5M4.285 9.567a.5.5 0 0 1 .683.183A3.5 3.5 0 0 0 8 11.5a3.5 3.5 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683M10 8c-.552 0-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5S10.552 8 10 8"/></symbol>
+    <symbol id="emoji-frown-fill" viewBox="0 0 16 16"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m-2.715 5.933a.5.5 0 0 1-.183-.683A4.5 4.5 0 0 1 8 9.5a4.5 4.5 0 0 1 3.898 2.25.5.5 0 0 1-.866.5A3.5 3.5 0 0 0 8 10.5a3.5 3.5 0 0 0-3.032 1.75.5.5 0 0 1-.683.183M10 8c-.552 0-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5S10.552 8 10 8"/></symbol>
+    <symbol id="telegram" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.03-.1.06-.2-.06-.3s-.34-.04-.49-.03c-.21.03-3.53 2.23-4.92 3.3-.42.33-.8.49-1.14.48-.38-.01-1.08-.21-1.6-.38-.65-.22-1.17-.34-1.13-.73.03-.32.85-.62 1.68-.95z"/></symbol>
+    <symbol id="wifi" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21l3.6-4.8c-1.2-1-2.6-1.6-4.2-1.6-1.6 0-3 .6-4.2 1.6L12 21m0-18C7.95 3 4.21 4.34 1.2 6.6L3 9c2.5-1.9 5.5-3 8.7-3s6.2 1.1 8.7 3l1.8-2.4C19.8 4.34 16.05 3 12 3m0 6c-2.7 0-5.19.89-7.2 2.4l1.8 2.4C8.1 12.67 9.97 12 12 12c2.03 0 3.9.67 5.4 1.8l1.8-2.4C17.19 9.89 14.7 9 12 9z"/></symbol>
+  </svg>
+
+  <div class="container my-container" x-data>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h4 class="my-text-heading fw-bold mb-0">وضعیت اشتراک</h4>
+    </div>
+    
+    <div class="row row-cols-2 row-cols-md-4 g-3 mb-4">
+      <div class="col">
+        <div class="my-block" x-data="blockName">
+          <div class="d-flex flex-row flex-sm-column align-items-center align-items-sm-start mb-1 mb-sm-0">
+            <svg class="bi my-text-blue me-2 mb-0 mb-sm-2"><use href="#person-fill"></use></svg>
+            <h5 class="my-text-heading mb-0">نام</h5>
+          </div>
+          <p class="text-truncate my-text-content mb-0" x-text="getText"></p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="my-block" x-data="blockStatus">
+          <div class="d-flex flex-row flex-sm-column align-items-center align-items-sm-start mb-1 mb-sm-0">
+            <svg class="bi me-2 mb-0 mb-sm-2"><use :href="getIcon"></use></svg>
+            <h5 class="my-text-heading mb-0">وضعیت</h5>
+          </div>
+          <p class="text-truncate my-text-content mb-0" x-text="getText"></p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="my-block" x-data="blockDuration">
+          <div class="d-flex flex-row flex-sm-column align-items-center align-items-sm-start mb-1 mb-sm-0">
+            <svg class="bi me-2 mb-0 mb-sm-2"><use href="#calendar3"></use></svg>
+            <h5 class="my-text-heading mb-0">مدت زمان</h5>
+          </div>
+          <p class="text-truncate my-text-content mb-0" x-text="getText"></p>
+        </div>
+      </div>
+      <div class="col">
+        <div class="my-block" x-data="blockTraffic">
+          <div class="d-flex flex-row flex-sm-column align-items-center align-items-sm-start mb-1 mb-sm-0">
+            <svg class="bi me-2 mb-0 mb-sm-2"><use href="#arrow-down-up"></use></svg>
+            <h5 class="my-text-heading mb-0">ترافیک</h5>
+          </div>
+          <p class="text-truncate my-text-content mb-0" x-text="getText"></p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="connection-buttons">
+      <a class="btn my-btn-outline" href="https://t.me/آیدی پشتیبانی" role="button" rel="noopener noreferrer" target="_blank">
+        <svg class="bi me-1"><use href="#telegram"></use></svg>
+        پشتیبانی
+      </a>
+      <button class="btn my-btn-outline" data-bs-toggle="modal" data-bs-target="#get-link-modal">
+        <svg class="bi me-1"><use href="#wifi"></use></svg>
+        نمایش کانفیگ‌ها
+      </button>
+    </div>
+    
+    <h4 class="my-text-heading fw-bold section-title">راهنمای اتصال</h4>
+
+    <div class="modal my-modal fade" id="get-link-modal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="my-text-heading fw-semibold mb-0">لینک‌ کانفیگ ها</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" x-data="configLinks">
+            <div class="mb-3">
+              <div class="config-link">
+                <div class="config-link-name">لینک اشتراک</div>
+                <button class="config-link-copy-btn" @click="copyLink(subscriptionUrl, $el)">کپی</button>
+              </div>
+              
+              <template x-for="(link, index) in links" :key="index">
+                <div class="config-link">
+                  <div class="config-link-name" x-text="getLinkName(link)"></div>
+                  <button class="config-link-copy-btn" @click="copyLink(link, $el)">کپی</button>
+                </div>
+              </template>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="tab-content">
+      <div id="tab-pc" class="tab-pane my-tab-pane fade show active">
+        <div class="row row-cols-1 row-cols-lg-3 g-3">
+          <div class="col">
+            <div class="my-block-big h-100">
+              <span class="my-step-counter mb-1"></span>
+              <h5 class="my-text-heading fw-semibold">دانلود برنامه‌ها</h5>
+              <p class="my-text-content">با توجه به سیستم عامل خود برنامه مورد نظر را دانلود کنید</p>
+              <div class="download-buttons">
+                <a class="btn my-btn-hiddify-outline" href="https://github.com/hiddify/hiddify-next/releases/latest/download/Hiddify-Windows-Setup-x64.exe" role="button" rel="noopener noreferrer" target="_blank">
+                  <svg class="bi" width="16" height="16"><use href="#windows"></use></svg>
+                  هیدیفای ویندوز
+                </a>
+                <a class="btn my-btn-hiddify-outline" href="https://github.com/hiddify/hiddify-next/releases/latest/download/Hiddify-Android-universal.apk" role="button" rel="noopener noreferrer" target="_blank">
+                  <svg class="bi" width="16" height="16"><use href="#android"></use></svg>
+                  هیدیفای اندروید
+                </a>
+                <a class="btn my-btn-hiddify-outline" href="https://apps.apple.com/us/app/hiddify-proxy-vpn/id6596777532" role="button" rel="noopener noreferrer" target="_blank">
+                  <svg class="bi" width="16" height="16"><use href="#apple"></use></svg>
+                  هیدیفای اپل
+                </a>
+                <a class="btn my-btn-singbox-outline" href="https://github.com/SagerNet/sing-box/releases/download/v1.11.5/SFA-1.11.5-universal.apk" role="button" rel="noopener noreferrer" target="_blank">
+                  <svg class="bi" width="16" height="16"><use href="#android"></use></svg>
+                  سینگ‌ باکس اندروید
+                </a>
+                <a class="btn my-btn-singbox-outline" href="https://apps.apple.com/us/app/sing-box-vt/id6673731168" role="button" rel="noopener noreferrer" target="_blank">
+                  <svg class="bi" width="16" height="16"><use href="#apple"></use></svg>
+                  سینگ‌ باکس اپل
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col">
+            <div class="my-block-big h-100" x-data="importActions">
+              <span class="my-step-counter mb-1"></span>
+              <h5 class="my-text-heading fw-semibold">افزودن اشتراک</h5>
+              <p class="my-text-content">برای وارد کردن تنظیمات از دکمه‌های زیر استفاده کنید</p>
+              <div class="download-buttons">
+                <a class="btn my-btn-hiddify-outline" href="#" @click.prevent="importHiddify" role="button">
+                  <svg class="bi" width="16" height="16"><use href="#plus"></use></svg>
+                  وارد کردن تنظیمات هیدیفای
+                </a>
+                <a class="btn my-btn-singbox-outline" href="#" @click.prevent="importSingbox" role="button">
+                  <svg class="bi" width="16" height="16"><use href="#plus"></use></svg>
+                  وارد کردن تنظیمات سینگ باکس
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col">
+            <div class="my-block-big h-100">
+              <span class="my-step-counter mb-1"></span>
+              <h5 class="my-text-heading fw-semibold">اتصال و استفاده</h5>
+              <p class="my-text-content mb-2">در برنامه هیدیفای روی دکمه CONNECT و در سینگ باکس روی ENABLE بزنید</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <script>
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('configLinks', () => ({
+        subscriptionUrl: '{{ user.subscription_url }}',
+        links: [{% for link in user.links %}'{{ link }}'{% if not loop.last %}, {% endif %}{% endfor %}],
+        
+        getLinkName(link) {
+          if (link === this.subscriptionUrl) return 'لینک اشتراک';
+          
+          const protocols = {
+            'vmess://': () => {
+              try { return JSON.parse(atob(link.replace('vmess://', ''))).ps || 'کانفیگ VMESS'; } 
+              catch { return 'کانفیگ VMESS'; }
+            },
+            'vless://': 'کانفیگ VLESS',
+            'trojan://': 'کانفیگ Trojan',
+            'ss://': 'کانفیگ Shadowsocks',
+            'ssr://': 'کانفیگ ShadowsocksR',
+            'http': 'لینک اشتراک'
+          };
+          
+          for (const [prefix, value] of Object.entries(protocols)) {
+            if (link.startsWith(prefix)) return typeof value === 'function' ? value() : value;
+          }
+          
+          return link.includes('#') ? decodeURIComponent(link.split('#')[1]) || 'لینک کانفیگ' : 'لینک کانفیگ';
+        },
+        
+        copyLink(link, button) {
+          navigator.clipboard.writeText(link);
+          button.textContent = 'کپی شد';
+          button.classList.add('copied');
+          setTimeout(() => {
+            button.textContent = 'کپی';
+            button.classList.remove('copied');
+          }, 2000);
+        }
+      }));
+
+      Alpine.data('importActions', () => ({
+        importHiddify() {
+          window.location.href = `hiddify://import/${'{{ user.subscription_url }}'}`;
+        },
+        importSingbox() {
+          window.location.href = `sing-box://import-remote-profile?url=${'{{ user.subscription_url }}'}#{{ user.username }}`;
+        }
+      }));
+
+      Alpine.data('blockName', () => ({
+        username: '{{ user.username }}',
+        getText() {
+          return this.username.startsWith('{') ? 'ناشناس' : this.username;
+        }
+      }));
+
+      Alpine.data('blockStatus', () => ({
+        statusValue: '{{ user.status.value }}',
+        getIcon() {
+          return this.statusValue == 'active' || this.statusValue.startsWith('{') 
+            ? '#emoji-smile-fill' : '#emoji-frown-fill';
+        },
+        getText() {
+          const statusMap = {
+            'active': 'فعال',
+            'limited': 'محدود',
+            'expired': 'منقضی‌شده',
+            'disabled': 'غیرفعال'
+          };
+          return this.statusValue.startsWith('{') ? 'ناشناس' : (statusMap[this.statusValue] || 'ناشناس');
+        }
+      }));
+
+      Alpine.data('blockDuration', () => ({
+        expire: '{% if user.expire %}{{ user.expire | datetime }}{% endif %}',
+        getText() {
+          if (!this.expire) return 'نامحدود';
+          if (this.expire.startsWith('{')) return 'ناشناس';
+          return `تا ${new Date(this.expire).toLocaleDateString('fa-IR')}`;
+        }
+      }));
+
+      Alpine.data('blockTraffic', () => ({
+        usedTraffic: '{{ user.used_traffic | bytesformat }}',
+        dataLimit: '{% if user.data_limit %}{{ user.data_limit | bytesformat }}{% endif %}',
+        getText() {
+          if (!this.dataLimit) return `${this.usedTraffic} / ∞`;
+          if (this.dataLimit.startsWith('{')) return 'ناشناس';
+          return `${this.usedTraffic} / ${this.dataLimit}`;
+        }
+      }));
+  </script>
+</body>
+</html>
