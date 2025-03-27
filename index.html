@@ -4,46 +4,40 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="قالب اختصاصی MrClock">
-  <meta name="theme-color" content="#151515">
+  <meta name="theme-color" content="#000000">
   <title>ناحیه کاربری</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap">
+  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
   
   <style>
     :root {
-      --bs-body-font-family: "Vazirmatn", -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --bs-body-font-family: "Vazirmatn", sans-serif;
       --bs-body-bg: #000000;
-      --my-gray-color: #151515;
-      --my-dark-gray-color: #1c1c1c;
-      --my-alpha-dark-gray-color: rgba(255, 255, 255, .15);
-      --my-heading-color: rgb(225, 225, 225);
-      --my-content-color: rgba(255, 255, 255, .55);
-      --my-modal-bg: #151515;
-      --my-blue-color: #0a85d1;
+      --my-gray: #151515;
+      --my-dark-gray: #1c1c1c;
+      --my-alpha-gray: rgba(255, 255, 255, .15);
+      --my-heading: rgb(225, 225, 225);
+      --my-content: rgba(255, 255, 255, .55);
+      --my-blue: #6aa6ff;
     }
 
     .btn {
-      transition: all 0.2s ease-in-out;
-      transform: translateY(0);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     }
-    .btn:active {
-      transform: translateY(0);
-    }
 
     .my-btn-hiddify-outline {
-      --bs-btn-color: var(--my-blue-color);
-      --bs-btn-border-color: var(--my-blue-color);
+      --bs-btn-color: var(--my-blue);
+      --bs-btn-border-color: var(--my-blue);
       --bs-btn-hover-color: #fff;
-      --bs-btn-hover-bg: var(--my-blue-color);
-      --bs-btn-active-color: #fff;
-      --bs-btn-active-bg: var(--my-blue-color);
+      --bs-btn-hover-bg: var(--my-blue);
     }
     
     .my-btn-singbox-outline {
@@ -51,26 +45,16 @@
       --bs-btn-border-color: #fff;
       --bs-btn-hover-color: #000;
       --bs-btn-hover-bg: #fff;
-      --bs-btn-active-color: #000;
-      --bs-btn-active-bg: #fff;
     }
 
-    .my-btn-outline, .my-btn-neutral {
-      --bs-btn-color: var(--my-heading-color);
-      --bs-btn-border-color: var(--my-alpha-dark-gray-color);
-      --bs-btn-hover-color: var(--my-heading-color);
-      --bs-btn-hover-bg: var(--my-gray-color);
-      --bs-btn-active-color: var(--my-heading-color);
-      --bs-btn-active-bg: var(--my-dark-gray-color);
+    .my-btn-outline {
+      --bs-btn-color: var(--my-heading);
+      --bs-btn-border-color: var(--my-alpha-gray);
+      --bs-btn-hover-color: var(--my-heading);
+      --bs-btn-hover-bg: var(--my-gray);
       --bs-border-radius: 10px;
       width: 100%;
       padding: 0.5rem 1rem !important;
-    }
-
-    .my-btn-neutral {
-      --bs-btn-bg: rgb(50, 50, 50);
-      --bs-btn-hover-bg: rgb(65, 65, 65);
-      --bs-btn-active-bg: rgb(75, 75, 75);
     }
 
     .bi {
@@ -84,32 +68,24 @@
       padding: 75px 25px;
     }
 
-    .my-block, .my-block-big {
-      border-radius: var(--bs-border-radius-xl);
-      background-color: var(--my-gray-color);
-    }
-
     .my-block {
+      border-radius: var(--bs-border-radius-xl);
+      background-color: var(--my-gray);
       padding: 1rem;
     }
     
-    .my-block .bi {
-      font-size: 1.1rem;
-      color: #fff !important;
-    }
-    
     .my-block-big {
-      padding: 1.5rem;
-      padding-top: .75rem;
+      border-radius: var(--bs-border-radius-xl);
+      background-color: var(--my-gray);
+      padding: 1.5rem 1.5rem 1rem;
     }
 
-    .my-text-blue { color: var(--my-blue-color); }
-    .my-text-heading { color: var(--my-heading-color); }
-    .my-text-content { color: var(--my-content-color); }
+    .my-text-heading { color: var(--my-heading); }
+    .my-text-content { color: var(--my-content); }
 
     .my-step-counter {
       display: block;
-      color: #fff !important;
+      color: #fff;
       font-weight: 500;
       font-size: 2.5rem;
       user-select: none;
@@ -127,7 +103,7 @@
     .download-buttons, .connection-buttons {
       display: flex;
       flex-direction: column;
-      gap: 0.95rem;
+      gap: 0.75rem;
     }
     
     .download-buttons .btn {
@@ -140,7 +116,7 @@
     }
 
     .modal.my-modal {
-      --bs-modal-bg: var(--my-modal-bg);
+      --bs-modal-bg: var(--my-gray);
       --bs-modal-border-radius: var(--bs-border-radius-xl);
       --bs-modal-header-padding: 1.5rem 1.5rem 0;
       --bs-modal-header-border-width: 0;
@@ -149,7 +125,7 @@
     .section-title {
       font-size: 1.25rem;
       font-weight: bold;
-      color: var(--my-heading-color);
+      color: var(--my-heading);
       margin: 1.5rem 0 1rem;
     }
 
@@ -159,13 +135,13 @@
       align-items: center;
       padding: 0.75rem 1rem;
       margin-bottom: 0.75rem;
-      background-color: var(--my-dark-gray-color);
+      background-color: var(--my-dark-gray);
       border-radius: 10px;
     }
 
     .config-link-name {
       font-weight: 500;
-      color: var(--my-heading-color);
+      color: var(--my-heading);
       flex-grow: 1;
     }
 
@@ -176,17 +152,16 @@
       background-color: var(--bs-body-bg);
       color: white;
       border: none;
-      transition: all 0.2s;
-      font-family: var(--bs-body-font-family);
+      transition: background-color 0.2s;
     }
 
     .config-link-copy-btn:hover,
     .config-link-copy-btn.copied {
-      background-color: var(--my-gray-color);
+      background-color: var(--my-gray);
     }
 
     .traffic-value {
-      font-family: var(--bs-body-font-family);
+      font-family: "Vazirmatn", sans-serif;
       direction: ltr;
       display: inline-block;
       text-align: left;
@@ -205,17 +180,17 @@
 </head>
 <body>
   <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
-    <symbol id="android" viewBox="0 0 24 24"><path fill="currentColor" d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24c-2.86-1.21-6.08-1.21-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.28.18-.37.54-.22.83L6.4 9.48C3.3 11.25 1.28 14.44 1 18h22c-.28-3.56-2.3-6.75-5.4-8.52zM7 15.25c-.69 0-1.25-.56-1.25-1.25S6.31 12.75 7 12.75s1.25.56 1.25 1.25S7.69 15.25 7 15.25zm10 0c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25z"/></symbol>
-    <symbol id="windows" viewBox="0 0 24 24"><path fill="currentColor" d="M3 3v8h8V3H3zm0 10v8h8v-8H3zm10 0v8h8v-8h-8zm0-10v8h8V3h-8z"/></symbol>
+    <symbol id="android" viewBox="0 0 24 24"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24c-2.86-1.21-6.08-1.21-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.28.18-.37.54-.22.83L6.4 9.48C3.3 11.25 1.28 14.44 1 18h22c-.28-3.56-2.3-6.75-5.4-8.52zM7 15.25c-.69 0-1.25-.56-1.25-1.25S6.31 12.75 7 12.75s1.25.56 1.25 1.25S7.69 15.25 7 15.25zm10 0c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25z"/></symbol>
+    <symbol id="microsoft" viewBox="0 0 16 16"><path d="M7.462 0H0v7.19h7.462V0zM16 0H8.538v7.19H16V0zM7.462 8.211H0V16h7.462V8.211zm8.538 0H8.538V16H16V8.211z"/></symbol>
     <symbol id="apple" viewBox="0 0 16 16"><path d="M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516s1.52.087 2.475-1.258.762-2.391.728-2.43m3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422s1.675-2.789 1.698-2.854-.597-.79-1.254-1.157a3.7 3.7 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56s.625 1.924 1.273 2.796c.576.984 1.34 1.667 1.659 1.899s1.219.386 1.843.067c.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758q.52-1.185.473-1.282"/></symbol>
-    <symbol id="plus" viewBox="0 0 16 16"><path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/></symbol>
-    <symbol id="person-fill" viewBox="0 0 16 16"><path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/></symbol>
-    <symbol id="calendar3" viewBox="0 0 16 16"><path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857z"/></symbol>
-    <symbol id="arrow-down-up" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5m-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5"/></symbol>
-    <symbol id="emoji-smile-fill" viewBox="0 0 16 16"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m-2.715 5.933a.5.5 0 0 1 .683.183A3.5 3.5 0 0 0 8 11.5a3.5 3.5 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683M10 8c-.552 0-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5S10.552 8 10 8"/></symbol>
-    <symbol id="emoji-frown-fill" viewBox="0 0 16 16"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5m-2.715 5.933a.5.5 0 0 1-.183-.683A4.5 4.5 0 0 1 8 9.5a4.5 4.5 0 0 1 3.898 2.25.5.5 0 0 1-.866.5A3.5 3.5 0 0 0 8 10.5a3.5 3.5 0 0 0-3.032 1.75.5.5 0 0 1-.683.183M10 8c-.552 0-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5S10.552 8 10 8"/></symbol>
-    <symbol id="telegram" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.03-.1.06-.2-.06-.3s-.34-.04-.49-.03c-.21.03-3.53 2.23-4.92 3.3-.42.33-.8.49-1.14.48-.38-.01-1.08-.21-1.6-.38-.65-.22-1.17-.34-1.13-.73.03-.32.85-.62 1.68-.95z"/></symbol>
-    <symbol id="wifi" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21l3.6-4.8c-1.2-1-2.6-1.6-4.2-1.6-1.6 0-3 .6-4.2 1.6L12 21m0-18C7.95 3 4.21 4.34 1.2 6.6L3 9c2.5-1.9 5.5-3 8.7-3s6.2 1.1 8.7 3l1.8-2.4C19.8 4.34 16.05 3 12 3m0 6c-2.7 0-5.19.89-7.2 2.4l1.8 2.4C8.1 12.67 9.97 12 12 12c2.03 0 3.9.67 5.4 1.8l1.8-2.4C17.19 9.89 14.7 9 12 9z"/></symbol>
+    <symbol id="plus-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/><path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/></symbol>
+    <symbol id="person-circle" viewBox="0 0 16 16"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/></symbol>
+    <symbol id="clock" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/></symbol>
+    <symbol id="arrow-down-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/></symbol>
+    <symbol id="check-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/><path d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/></symbol>
+    <symbol id="x-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/><path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/></symbol>
+    <symbol id="telegram" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.03-.1.06-.2-.06-.3s-.34-.04-.49-.03c-.21.03-3.53 2.23-4.92 3.3-.42.33-.8.49-1.14.48-.38-.01-1.08-.21-1.6-.38-.65-.22-1.17-.34-1.13-.73.03-.32.85-.62 1.68-.95z"/></symbol>
+    <symbol id="list-ul" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/></symbol>
   </svg>
 
   <div class="container my-container" x-data>
@@ -227,7 +202,7 @@
       <div class="col">
         <div class="my-block" x-data="blockName">
           <div class="d-flex flex-row flex-sm-column align-items-center align-items-sm-start mb-1 mb-sm-0">
-            <svg class="bi my-text-blue me-2 mb-0 mb-sm-2"><use href="#person-fill"></use></svg>
+            <svg class="bi me-2 mb-0 mb-sm-2"><use href="#person-circle"></use></svg>
             <h5 class="my-text-heading mb-0">نام</h5>
           </div>
           <p class="text-truncate my-text-content mb-0" x-text="getText"></p>
@@ -245,7 +220,7 @@
       <div class="col">
         <div class="my-block" x-data="blockDuration">
           <div class="d-flex flex-row flex-sm-column align-items-center align-items-sm-start mb-1 mb-sm-0">
-            <svg class="bi me-2 mb-0 mb-sm-2"><use href="#calendar3"></use></svg>
+            <svg class="bi me-2 mb-0 mb-sm-2"><use href="#clock"></use></svg>
             <h5 class="my-text-heading mb-0">مدت زمان</h5>
           </div>
           <p class="text-truncate my-text-content mb-0" x-text="getText"></p>
@@ -254,7 +229,7 @@
       <div class="col">
         <div class="my-block" x-data="blockTraffic">
           <div class="d-flex flex-row flex-sm-column align-items-center align-items-sm-start mb-1 mb-sm-0">
-            <svg class="bi me-2 mb-0 mb-sm-2"><use href="#arrow-down-up"></use></svg>
+            <svg class="bi me-2 mb-0 mb-sm-2"><use href="#arrow-down-circle"></use></svg>
             <h5 class="my-text-heading mb-0">ترافیک</h5>
           </div>
           <p class="text-truncate my-text-content mb-0" x-html="getText"></p>
@@ -268,7 +243,7 @@
         پشتیبانی
       </a>
       <button class="btn my-btn-outline" data-bs-toggle="modal" data-bs-target="#get-link-modal">
-        <svg class="bi me-1"><use href="#wifi"></use></svg>
+        <svg class="bi me-1"><use href="#list-ul"></use></svg>
         نمایش کانفیگ‌ها
       </button>
     </div>
@@ -311,7 +286,7 @@
               <p class="my-text-content">با توجه به سیستم عامل خود برنامه مورد نظر را دانلود کنید</p>
               <div class="download-buttons">
                 <a class="btn my-btn-hiddify-outline" href="https://github.com/hiddify/hiddify-next/releases/latest/download/Hiddify-Windows-Setup-x64.exe" role="button" rel="noopener noreferrer" target="_blank">
-                  <svg class="bi" width="16" height="16"><use href="#windows"></use></svg>
+                  <svg class="bi" width="16" height="16"><use href="#microsoft"></use></svg>
                   هیدیفای ویندوز
                 </a>
                 <a class="btn my-btn-hiddify-outline" href="https://github.com/hiddify/hiddify-next/releases/latest/download/Hiddify-Android-universal.apk" role="button" rel="noopener noreferrer" target="_blank">
@@ -341,11 +316,11 @@
               <p class="my-text-content">برای وارد کردن تنظیمات از دکمه‌های زیر استفاده کنید</p>
               <div class="download-buttons">
                 <a class="btn my-btn-hiddify-outline" href="#" @click.prevent="importHiddify" role="button">
-                  <svg class="bi" width="16" height="16"><use href="#plus"></use></svg>
+                  <svg class="bi" width="16" height="16"><use href="#plus-circle"></use></svg>
                   وارد کردن تنظیمات هیدیفای
                 </a>
                 <a class="btn my-btn-singbox-outline" href="#" @click.prevent="importSingbox" role="button">
-                  <svg class="bi" width="16" height="16"><use href="#plus"></use></svg>
+                  <svg class="bi" width="16" height="16"><use href="#plus-circle"></use></svg>
                   وارد کردن تنظیمات سینگ باکس
                 </a>
               </div>
@@ -426,15 +401,6 @@
               } catch {
                 return 'کانفیگ Shadowsocks';
               }
-            },
-            'ssr://': () => {
-              try {
-                const decoded = atob(link.replace('ssr://', '').split('/')[0]);
-                const parts = decoded.split(':');
-                return parts.length > 5 ? decodeURIComponent(parts[5]) || 'کانفیگ ShadowsocksR' : 'کانفیگ ShadowsocksR';
-              } catch {
-                return 'کانفیگ ShadowsocksR';
-              }
             }
           };
           
@@ -484,7 +450,7 @@
         statusValue: '{{ user.status.value }}',
         getIcon() {
           return this.statusValue == 'active' || this.statusValue.startsWith('{') 
-            ? '#emoji-smile-fill' : '#emoji-frown-fill';
+            ? '#check-circle' : '#x-circle';
         },
         getText() {
           const statusMap = {
