@@ -122,11 +122,15 @@
       --bs-modal-header-border-width: 0;
     }
 
+    .modal-body p.my-text-content {
+      margin-bottom: 1rem !important;
+      padding: 0 0.5rem;
+    }
+
     .section-title {
-      font-size: 1.25rem;
       font-weight: bold;
       color: var(--my-heading);
-      margin: 1.5rem 0 1rem;
+      margin: 3rem 0 1.5rem;
     }
 
     .config-link {
@@ -195,14 +199,14 @@
 
   <div class="container my-container" x-data>
     <div class="d-flex justify-content-between align-items-center mb-3">
-      <h4 class="my-text-heading fw-bold mb-0">وضعیت اشتراک</h4>
+      <h4 class="my-text-heading fw-bold mb-2">وضعیت اشتراک</h4>
     </div>
     
     <div class="row row-cols-2 row-cols-md-4 g-3 mb-4">
       <div class="col">
         <div class="my-block" x-data="blockName">
-          <div class="d-flex flex-row flex-sm-column align-items-center align-items-sm-start mb-1 mb-sm-0">
-            <svg class="bi me-2 mb-0 mb-sm-2"><use href="#person-circle"></use></svg>
+          <div class="d-flex flex-row align-items-center mb-3">
+            <svg class="bi me-2"><use href="#person-circle"></use></svg>
             <h5 class="my-text-heading mb-0">نام</h5>
           </div>
           <p class="text-truncate my-text-content mb-0" x-text="getText"></p>
@@ -210,8 +214,8 @@
       </div>
       <div class="col">
         <div class="my-block" x-data="blockStatus">
-          <div class="d-flex flex-row flex-sm-column align-items-center align-items-sm-start mb-1 mb-sm-0">
-            <svg class="bi me-2 mb-0 mb-sm-2"><use :href="getIcon"></use></svg>
+          <div class="d-flex flex-row align-items-center mb-3">
+            <svg class="bi me-2"><use :href="getIcon"></use></svg>
             <h5 class="my-text-heading mb-0">وضعیت</h5>
           </div>
           <p class="text-truncate my-text-content mb-0" x-text="getText"></p>
@@ -219,8 +223,8 @@
       </div>
       <div class="col">
         <div class="my-block" x-data="blockDuration">
-          <div class="d-flex flex-row flex-sm-column align-items-center align-items-sm-start mb-1 mb-sm-0">
-            <svg class="bi me-2 mb-0 mb-sm-2"><use href="#clock"></use></svg>
+          <div class="d-flex flex-row align-items-center mb-3">
+            <svg class="bi me-2"><use href="#clock"></use></svg>
             <h5 class="my-text-heading mb-0">مدت زمان</h5>
           </div>
           <p class="text-truncate my-text-content mb-0" x-text="getText"></p>
@@ -228,8 +232,8 @@
       </div>
       <div class="col">
         <div class="my-block" x-data="blockTraffic">
-          <div class="d-flex flex-row flex-sm-column align-items-center align-items-sm-start mb-1 mb-sm-0">
-            <svg class="bi me-2 mb-0 mb-sm-2"><use href="#arrow-down-circle"></use></svg>
+          <div class="d-flex flex-row align-items-center mb-3">
+            <svg class="bi me-2"><use href="#arrow-down-circle"></use></svg>
             <h5 class="my-text-heading mb-0">ترافیک</h5>
           </div>
           <p class="text-truncate my-text-content mb-0" x-html="getText"></p>
@@ -258,6 +262,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" x-data="configLinks">
+            <p class="my-text-content mb-3">برای استفاده از کانفیگ های خود در سایر اپلیکیشن‌ها می‌توانید از لینک‌های زیر استفاده کنید.</p>
             <div class="mb-3">
               <div class="config-link">
                 <div class="config-link-name">لینک اشتراک</div>
@@ -297,7 +302,7 @@
                   <svg class="bi" width="16" height="16"><use href="#apple"></use></svg>
                   هیدیفای اپل
                 </a>
-                <a class="btn my-btn-singbox-outline" href="https://github.com/SagerNet/sing-box/releases/download/v1.11.5/SFA-1.11.5-universal.apk" role="button" rel="noopener noreferrer" target="_blank">
+                <a class="btn my-btn-singbox-outline" href="https://github.com/SagerNet/sing-box/releases/download/v1.11.6/SFA-1.11.6-universal.apk" role="button" rel="noopener noreferrer" target="_blank">
                   <svg class="bi" width="16" height="16"><use href="#android"></use></svg>
                   سینگ‌ باکس اندروید
                 </a>
