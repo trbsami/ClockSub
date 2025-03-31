@@ -3,14 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="قالب اختصاصی MrClock">
+  <meta name="description" content="قالب اختصاصی MrClock برای ناحیه کاربری اشتراک">
   <meta name="theme-color" content="#0c151b">
   <title>ناحیه کاربری</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap">
-  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
   
   <style>
@@ -24,20 +23,18 @@
       --my-content: #a8cbda;
     }
 
+    body {
+      background-color: var(--bs-body-bg);
+    }
+
     .btn {
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, background-color 0.3s ease;
     }
     .btn:hover {
       transform: translateY(-2px);
     }
 
-    .my-btn-hiddify-outline {
-      --bs-btn-color: #eef5f8;
-      --bs-btn-border-color: #eef5f8;
-      --bs-btn-hover-color: #0f1519;
-      --bs-btn-hover-bg: #eef5f8;
-    }
-    
+    .my-btn-hiddify-outline,
     .my-btn-singbox-outline {
       --bs-btn-color: #eef5f8;
       --bs-btn-border-color: #eef5f8;
@@ -59,127 +56,149 @@
       fill: currentColor;
       width: 1em;
       height: 1em;
+      vertical-align: -0.125em;
     }
 
     .my-container {
       max-width: 1024px;
       padding: 75px 25px;
+      margin: 0 auto;
     }
 
     .my-block {
       border-radius: var(--bs-border-radius-xl);
       background-color: var(--my-gray);
       padding: 1rem;
+      height: 100%;
     }
     
     .my-block-big {
       border-radius: var(--bs-border-radius-xl);
       background-color: var(--my-gray);
       padding: 1.5rem 2rem 2rem;
+      height: 100%;
     }
 
     .my-text-heading { color: var(--my-heading); }
     .my-text-content { color: var(--my-content); }
 
     .my-step-counter {
-      display: block;
-      color: #eef5f8;
-      font-weight: 750;
-      font-size: 2.5rem;
-      user-select: none;
-    }
+    display: block;
+    color: var(--my-heading);
+    font-weight: 750;
+    font-size: 2.5rem;
+    user-select: none;
+    text-align: right;
+  }
 
-    .my-step-counter::after {
-      content: counter(step-counter);
-      counter-increment: step-counter;
-    }
+  .my-step-counter::after {
+    content: counter(step-counter);
+    counter-increment: step-counter;
+  }
 
-    .my-tab-pane {
-      counter-reset: step-counter;
-    }
+  .my-tab-pane {
+    counter-reset: step-counter;
+  }
 
-    .download-buttons, .connection-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
+  .download-buttons, .connection-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .download-buttons .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 10px;
+    padding: 0.5rem 1rem !important;
+  }
+
+  .modal.my-modal {
+    --bs-modal-bg: var(--my-gray);
+    --bs-modal-border-radius: var(--bs-border-radius-xl);
+    --bs-modal-header-padding: 1.5rem 1.5rem 0;
+    --bs-modal-header-border-width: 0;
+  }
+
+  .modal-body p.my-text-content {
+    margin-bottom: 1rem !important;
+    padding: 0 0.5rem;
+  }
+
+  .section-title {
+    font-weight: bold;
+    color: var(--my-heading);
+    margin: 3rem 0 1.5rem;
+  }
+
+  .config-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.75rem;
+    background-color: var(--my-dark-gray);
+    border-radius: 10px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .config-link:hover {
+    background-color: var(--my-alpha-gray);
+  }
+
+  .config-link-name {
+    font-weight: 500;
+    color: var(--my-heading);
+    flex-grow: 1;
+  }
+
+  .config-link-copy-btn {
+    min-width: 80px;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    background-color: var(--bs-body-bg);
+    color: #eef5f8;
+    border: none;
+    transition: background-color 0.2s, transform 0.2s;
+  }
+
+  .config-link-copy-btn:hover,
+  .config-link-copy-btn.copied {
+    background-color: var(--my-gray);
+    transform: translateY(-1px);
+  }
+
+  .traffic-value {
+    font-family: "Vazirmatn", sans-serif;
+    direction: ltr;
+    display: inline-block;
+    text-align: left;
+    width: 100%;
+  }
+
+  @media (min-width: 576px) {
+    .connection-buttons {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .connection-buttons .btn {
+      flex: 1;
+    }
+  }
+  
+  @media (max-width: 767.98px) {
+    .my-container {
+      padding: 50px 15px;
     }
     
-    .download-buttons .btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      border-radius: 10px;
-      padding: 0.5rem 1rem !important;
+    .my-block-big {
+      padding: 1.25rem 1.5rem 1.5rem;
     }
+  }
+</style>
 
-    .modal.my-modal {
-      --bs-modal-bg: var(--my-gray);
-      --bs-modal-border-radius: var(--bs-border-radius-xl);
-      --bs-modal-header-padding: 1.5rem 1.5rem 0;
-      --bs-modal-header-border-width: 0;
-    }
-
-    .modal-body p.my-text-content {
-      margin-bottom: 1rem !important;
-      padding: 0 0.5rem;
-    }
-
-    .section-title {
-      font-weight: bold;
-      color: var(--my-heading);
-      margin: 3rem 0 1.5rem;
-    }
-
-    .config-link {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.75rem 1rem;
-      margin-bottom: 0.75rem;
-      background-color: var(--my-dark-gray);
-      border-radius: 10px;
-    }
-
-    .config-link-name {
-      font-weight: 500;
-      color: var(--my-heading);
-      flex-grow: 1;
-    }
-
-    .config-link-copy-btn {
-      min-width: 80px;
-      padding: 0.25rem 0.5rem;
-      border-radius: 6px;
-      background-color: var(--bs-body-bg);
-      color: #eef5f8;
-      border: none;
-      transition: background-color 0.2s;
-    }
-
-    .config-link-copy-btn:hover,
-    .config-link-copy-btn.copied {
-      background-color: var(--my-gray);
-    }
-
-    .traffic-value {
-      font-family: "Vazirmatn", sans-serif;
-      direction: ltr;
-      display: inline-block;
-      text-align: left;
-      width: 100%;
-    }
-
-    @media (min-width: 576px) {
-      .connection-buttons {
-        flex-direction: row;
-      }
-      .connection-buttons .btn {
-        flex: 1;
-      }
-    }
-  </style>
-</head>
 <body>
   <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
     <symbol id="android" viewBox="0 0 24 24"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24c-2.86-1.21-6.08-1.21-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.28.18-.37.54-.22.83L6.4 9.48C3.3 11.25 1.28 14.44 1 18h22c-.28-3.56-2.3-6.75-5.4-8.52zM7 15.25c-.69 0-1.25-.56-1.25-1.25S6.31 12.75 7 12.75s1.25.56 1.25 1.25S7.69 15.25 7 15.25zm10 0c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25z"/></symbol>
@@ -239,7 +258,7 @@
       </div>
     </div>
     
-    <div class="connection-buttons">
+    <div class="connection-buttons mb-4">
       <a class="btn my-btn-outline" href="https://t.me/YOUR-TELEGRAM-USERNAME" role="button" rel="noopener noreferrer" target="_blank">
         <svg class="bi me-1"><use href="#telegram"></use></svg>
         پشتیبانی تلگرام
@@ -249,14 +268,13 @@
         نمایش کانفیگ‌ها
       </button>
     </div>
-    
     <h4 class="my-text-heading fw-bold section-title">راهنمای اتصال</h4>
 
-    <div class="modal my-modal fade" id="get-link-modal" tabindex="-1">
+    <div class="modal my-modal fade" id="get-link-modal" tabindex="-1" aria-labelledby="linkModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="my-text-heading fw-semibold mb-0">لینک‌ کانفیگ ها</h5>
+            <h5 class="my-text-heading fw-semibold mb-0" id="linkModalLabel">لینک‌ کانفیگ ها</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" x-data="configLinks">
@@ -334,14 +352,14 @@
             <div class="my-block-big h-100">
               <span class="my-step-counter mb-3"></span>
               <h5 class="my-text-heading fw-semibold">اتصال و استفاده</h5>
-              <p class="my-text-content mb-2">در برنامه هیدیفای روی دکمه CONNECT و در سینگ باکس روی ENABLE بزنید . پیشنهاد می شود روزانه لینک اشتراک خود را آپدیت کنید</p>
+              <p class="my-text-content mb-2">در برنامه هیدیفای روی دکمه CONNECT و در سینگ باکس روی ENABLE بزنید. پیشنهاد می شود روزانه لینک اشتراک خود را آپدیت کنید.</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
+ 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
   <script>
@@ -369,8 +387,8 @@
         getLinkName(link) {
           if (link === this.subscriptionUrl) return 'لینک اشتراک';
           
-          const protocolMap = {
-            'vmess://': () => {
+          const protocols = {
+            'vmess://': link => {
               try { 
                 const config = JSON.parse(atob(link.replace('vmess://', '')));
                 return config.ps || 'کانفیگ VMESS';
@@ -378,7 +396,7 @@
                 return 'کانفیگ VMESS'; 
               }
             },
-            'vless://': () => {
+            'vless://': link => {
               try {
                 const url = new URL(link);
                 const params = new URLSearchParams(url.hash.slice(1));
@@ -387,7 +405,7 @@
                 return 'کانفیگ VLESS';
               }
             },
-            'trojan://': () => {
+            'trojan://': link => {
               try {
                 const url = new URL(link);
                 const params = new URLSearchParams(url.hash.slice(1));
@@ -396,7 +414,7 @@
                 return 'کانفیگ Trojan';
               }
             },
-            'ss://': () => {
+            'ss://': link => {
               try {
                 const decoded = atob(link.replace('ss://', '').split('@')[0]);
                 const parts = decoded.split(':');
@@ -407,9 +425,9 @@
             }
           };
           
-          for (const [prefix, handler] of Object.entries(protocolMap)) {
+          for (const prefix in protocols) {
             if (link.startsWith(prefix)) {
-              return handler();
+              return protocols[prefix](link);
             }
           }
           
@@ -488,11 +506,7 @@
             return 'ناشناس';
           }
           
-          return `
-            <span class="traffic-value">
-              ${formatBytes(this.usedTraffic)} / ${formatBytes(this.dataLimit)}
-            </span>
-          `;
+          return `<span class="traffic-value">${formatBytes(this.usedTraffic)} / ${formatBytes(this.dataLimit)}</span>`;
         }
       }));
     });
