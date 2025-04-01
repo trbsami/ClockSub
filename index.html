@@ -3,16 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="قالب اختصاصی MrClock برای ناحیه کاربری اشتراک">
-  <meta name="theme-color" content="#0c151b">
   <title>ناحیه کاربری</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- لینک فونت و استایل‌های خارجی -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
   
+  <!-- استایل‌های سفارشی -->
   <style>
+    /* تعریف متغیرهای رنگ */
     :root {
       --bs-body-font-family: "Vazirmatn", sans-serif;
       --bs-body-bg: #0f1519;
@@ -23,10 +22,12 @@
       --my-content: #a8cbda;
     }
 
+    /* استایل پایه بدنه */
     body {
       background-color: var(--bs-body-bg);
     }
 
+    /* انیمیشن دکمه‌ها */
     .btn {
       transition: transform 0.2s ease, background-color 0.3s ease;
     }
@@ -34,6 +35,7 @@
       transform: translateY(-2px);
     }
 
+    /* استایل دکمه‌های اختصاصی */
     .my-btn-hiddify-outline,
     .my-btn-singbox-outline {
       --bs-btn-color: #eef5f8;
@@ -52,6 +54,7 @@
       padding: 0.5rem 1rem !important;
     }
 
+    /* استایل آیکون‌ها */
     .bi {
       fill: currentColor;
       width: 1em;
@@ -59,12 +62,14 @@
       vertical-align: -0.125em;
     }
 
+    /* استایل کانتینر اصلی */
     .my-container {
       max-width: 1024px;
       padding: 75px 25px;
       margin: 0 auto;
     }
 
+    /* استایل بلوک‌های اطلاعات */
     .my-block {
       border-radius: var(--bs-border-radius-xl);
       background-color: var(--my-gray);
@@ -79,127 +84,137 @@
       height: 100%;
     }
 
+    /* استایل متن‌ها */
     .my-text-heading { color: var(--my-heading); }
     .my-text-content { color: var(--my-content); }
 
+    /* استایل شماره مراحل */
     .my-step-counter {
-    display: block;
-    color: var(--my-heading);
-    font-weight: 750;
-    font-size: 2.5rem;
-    user-select: none;
-    text-align: right;
-  }
-
-  .my-step-counter::after {
-    content: counter(step-counter);
-    counter-increment: step-counter;
-  }
-
-  .my-tab-pane {
-    counter-reset: step-counter;
-  }
-
-  .download-buttons, .connection-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-  
-  .download-buttons .btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    border-radius: 10px;
-    padding: 0.5rem 1rem !important;
-  }
-
-  .modal.my-modal {
-    --bs-modal-bg: var(--my-gray);
-    --bs-modal-border-radius: var(--bs-border-radius-xl);
-    --bs-modal-header-padding: 1.5rem 1.5rem 0;
-    --bs-modal-header-border-width: 0;
-  }
-
-  .modal-body p.my-text-content {
-    margin-bottom: 1rem !important;
-    padding: 0 0.5rem;
-  }
-
-  .section-title {
-    font-weight: bold;
-    color: var(--my-heading);
-    margin: 3rem 0 1.5rem;
-  }
-
-  .config-link {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.75rem 1rem;
-    margin-bottom: 0.75rem;
-    background-color: var(--my-dark-gray);
-    border-radius: 10px;
-    transition: background-color 0.2s ease;
-  }
-  
-  .config-link:hover {
-    background-color: var(--my-alpha-gray);
-  }
-
-  .config-link-name {
-    font-weight: 500;
-    color: var(--my-heading);
-    flex-grow: 1;
-  }
-
-  .config-link-copy-btn {
-    min-width: 80px;
-    padding: 0.25rem 0.5rem;
-    border-radius: 6px;
-    background-color: var(--bs-body-bg);
-    color: #eef5f8;
-    border: none;
-    transition: background-color 0.2s, transform 0.2s;
-  }
-
-  .config-link-copy-btn:hover,
-  .config-link-copy-btn.copied {
-    background-color: var(--my-gray);
-    transform: translateY(-1px);
-  }
-
-  .traffic-value {
-    font-family: "Vazirmatn", sans-serif;
-    direction: ltr;
-    display: inline-block;
-    text-align: left;
-    width: 100%;
-  }
-
-  @media (min-width: 576px) {
-    .connection-buttons {
-      flex-direction: row;
-      flex-wrap: wrap;
+      display: block;
+      color: var(--my-heading);
+      font-weight: 750;
+      font-size: 2.5rem;
+      user-select: none;
+      text-align: right;
     }
-    .connection-buttons .btn {
-      flex: 1;
+
+    .my-step-counter::after {
+      content: counter(step-counter);
+      counter-increment: step-counter;
     }
-  }
-  
-  @media (max-width: 767.98px) {
-    .my-container {
-      padding: 50px 15px;
+
+    .my-tab-pane {
+      counter-reset: step-counter;
+    }
+
+    /* استایل بخش دکمه‌های دانلود */
+    .download-buttons, .connection-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
     }
     
-    .my-block-big {
-      padding: 1.25rem 1.5rem 1.5rem;
+    .download-buttons .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      border-radius: 10px;
+      padding: 0.5rem 1rem !important;
     }
-  }
-</style>
+
+    /* استایل مودال */
+    .modal.my-modal {
+      --bs-modal-bg: var(--my-gray);
+      --bs-modal-border-radius: var(--bs-border-radius-xl);
+      --bs-modal-header-padding: 1.5rem 1.5rem 0;
+      --bs-modal-header-border-width: 0;
+    }
+
+    .modal-body p.my-text-content {
+      margin-bottom: 1rem !important;
+      padding: 0 0.5rem;
+    }
+
+    /* استایل عنوان بخش‌ها */
+    .section-title {
+      font-weight: bold;
+      color: var(--my-heading);
+      margin: 3rem 0 1.5rem;
+    }
+
+    /* استایل لینک‌های کانفیگ */
+    .config-link {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.75rem;
+      background-color: var(--my-dark-gray);
+      border-radius: 10px;
+      transition: background-color 0.2s ease;
+    }
+    
+    .config-link:hover {
+      background-color: var(--my-alpha-gray);
+    }
+
+    .config-link-name {
+      font-weight: 500;
+      color: var(--my-heading);
+      flex-grow: 1;
+    }
+
+    .config-link-copy-btn {
+      min-width: 80px;
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+      background-color: var(--bs-body-bg);
+      color: #eef5f8;
+      border: none;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+
+    .config-link-copy-btn:hover,
+    .config-link-copy-btn.copied {
+      background-color: var(--my-gray);
+      transform: translateY(-1px);
+    }
+
+    /* استایل نمایش ترافیک */
+    .traffic-value {
+      font-family: "Vazirmatn", sans-serif;
+      direction: ltr;
+      display: inline-block;
+      text-align: left;
+      width: 100%;
+    }
+
+    /* رسپانسیو برای دستگاه‌های کوچک */
+    @media (min-width: 576px) {
+      .connection-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .connection-buttons .btn {
+        flex: 1;
+      }
+    }
+    
+    @media (max-width: 767.98px) {
+      .my-container {
+        padding: 50px 15px;
+      }
+      
+      .my-block-big {
+        padding: 1.25rem 1.5rem 1.5rem;
+      }
+    }
+  </style>
+</head>
 
 <body>
+  <!-- آیکون‌های SVG مورد نیاز -->
   <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
     <symbol id="android" viewBox="0 0 24 24"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.29-.15-.65-.06-.83.22l-1.88 3.24c-2.86-1.21-6.08-1.21-8.94 0L5.65 5.67c-.19-.29-.58-.38-.87-.2-.28.18-.37.54-.22.83L6.4 9.48C3.3 11.25 1.28 14.44 1 18h22c-.28-3.56-2.3-6.75-5.4-8.52zM7 15.25c-.69 0-1.25-.56-1.25-1.25S6.31 12.75 7 12.75s1.25.56 1.25 1.25S7.69 15.25 7 15.25zm10 0c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25z"/></symbol>
     <symbol id="microsoft" viewBox="0 0 16 16"><path d="M7.462 0H0v7.19h7.462V0zM16 0H8.538v7.19H16V0zM7.462 8.211H0V16h7.462V8.211zm8.538 0H8.538V16H16V8.211z"/></symbol>
@@ -214,21 +229,27 @@
     <symbol id="list-ul" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/></symbol>
   </svg>
 
+  <!-- محتوای اصلی صفحه -->
   <div class="container my-container" x-data>
+    <!-- هدر بخش وضعیت اشتراک -->
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h4 class="my-text-heading fw-bold mb-2">وضعیت اشتراک</h4>
     </div>
     
+    <!-- کارت‌های اطلاعات کاربر -->
     <div class="row row-cols-2 row-cols-md-4 g-3 mb-4">
+      <!-- کارت نام کاربر -->
       <div class="col">
         <div class="my-block" x-data="blockName">
           <div class="d-flex flex-row align-items-center mb-3">
             <svg class="bi me-2"><use href="#person-circle"></use></svg>
-            <h5 class="my-text-heading mb-0">نام</h5>
+            <h5 class="my-text-heading mb-0">نام کاربری</h5>
           </div>
           <p class="text-truncate my-text-content mb-0" x-text="getText"></p>
         </div>
       </div>
+      
+      <!-- کارت وضعیت اشتراک -->
       <div class="col">
         <div class="my-block" x-data="blockStatus">
           <div class="d-flex flex-row align-items-center mb-3">
@@ -238,6 +259,8 @@
           <p class="text-truncate my-text-content mb-0" x-text="getText"></p>
         </div>
       </div>
+      
+      <!-- کارت مدت زمان باقیمانده -->
       <div class="col">
         <div class="my-block" x-data="blockDuration">
           <div class="d-flex flex-row align-items-center mb-3">
@@ -247,6 +270,8 @@
           <p class="text-truncate my-text-content mb-0" x-text="getText"></p>
         </div>
       </div>
+      
+      <!-- کارت میزان ترافیک -->
       <div class="col">
         <div class="my-block" x-data="blockTraffic">
           <div class="d-flex flex-row align-items-center mb-3">
@@ -258,6 +283,7 @@
       </div>
     </div>
     
+    <!-- دکمه‌های ارتباطی -->
     <div class="connection-buttons mb-4">
       <a class="btn my-btn-outline" href="https://t.me/YOUR-TELEGRAM-USERNAME" role="button" rel="noopener noreferrer" target="_blank">
         <svg class="bi me-1"><use href="#telegram"></use></svg>
@@ -268,8 +294,11 @@
         نمایش کانفیگ‌ها
       </button>
     </div>
+    
+    <!-- عنوان بخش راهنمای اتصال -->
     <h4 class="my-text-heading fw-bold section-title">راهنمای اتصال</h4>
 
+    <!-- مودال نمایش لینک‌های کانفیگ -->
     <div class="modal my-modal fade" id="get-link-modal" tabindex="-1" aria-labelledby="linkModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -285,6 +314,7 @@
                 <button class="config-link-copy-btn" @click="copyLink(subscriptionUrl, $el)">کپی</button>
               </div>
               
+              <!-- لیست لینک‌های کانفیگ -->
               <template x-for="(link, index) in links" :key="index">
                 <div class="config-link">
                   <div class="config-link-name" x-text="getLinkName(link)"></div>
@@ -297,9 +327,11 @@
       </div>
     </div>
     
+    <!-- بخش راهنمای اتصال -->
     <div class="tab-content">
       <div id="tab-pc" class="tab-pane my-tab-pane fade show active">
         <div class="row row-cols-1 row-cols-lg-3 g-3">
+          <!-- مرحله 1: دانلود برنامه‌ها -->
           <div class="col">
             <div class="my-block-big h-100">
               <span class="my-step-counter mb-3"></span>
@@ -330,11 +362,12 @@
             </div>
           </div>
           
+          <!-- مرحله 2: افزودن اشتراک -->
           <div class="col">
             <div class="my-block-big h-100" x-data="importActions">
               <span class="my-step-counter mb-3"></span>
               <h5 class="my-text-heading fw-semibold">افزودن اشتراک</h5>
-              <p class="my-text-content">برای وارد کردن تنظیمات با توجه به برنامه ای که نصب کردید روی دکمه مربوط به آن کلیک کنید</p>
+              <p class="my-text-content">با توجه به برنامه ای که نصب کرده اید روی دکمه مربوط به آن کلیک کنید</p>
               <div class="download-buttons">
                 <a class="btn my-btn-hiddify-outline" href="#" @click.prevent="importHiddify" role="button">
                   <svg class="bi" width="16" height="16"><use href="#plus-circle"></use></svg>
@@ -348,11 +381,12 @@
             </div>
           </div>
           
+          <!-- مرحله 3: اتصال و استفاده -->
           <div class="col">
             <div class="my-block-big h-100">
               <span class="my-step-counter mb-3"></span>
               <h5 class="my-text-heading fw-semibold">اتصال و استفاده</h5>
-              <p class="my-text-content mb-2">در برنامه هیدیفای روی دکمه CONNECT و در سینگ باکس روی ENABLE بزنید. پیشنهاد می شود روزانه لینک اشتراک خود را آپدیت کنید.</p>
+              <p class="my-text-content mb-2">در برنامه هیدیفای روی دکمه CONNECT و در سینگ باکس روی ENABLE کلیک کنید. پیشنهاد می شود روزانه لینک اشتراک خود را از داخل اپلیکیشن دانلود شده آپدیت کنید</p>
             </div>
           </div>
         </div>
@@ -360,10 +394,14 @@
     </div>
   </div>
  
+  <!-- اسکریپت‌های مورد نیاز -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  
+  <!-- اسکریپت‌های سفارشی -->
   <script>
     document.addEventListener('alpine:init', () => {
+      // تابع تبدیل بایت به واحدهای خوانا
       const formatBytes = (bytes) => {
         if (!bytes || bytes.toString().startsWith('{')) return '0';
         bytes = parseInt(bytes);
@@ -380,10 +418,12 @@
         return `${bytes.toFixed(2)} ${units[i]}`;
       };
 
+      // کامپوننت مدیریت لینک‌های کانفیگ
       Alpine.data('configLinks', () => ({
         subscriptionUrl: '{{ user.subscription_url }}',
         links: [{% for link in user.links %}'{{ link }}'{% if not loop.last %}, {% endif %}{% endfor %}],
         
+        // تابع تشخیص نام کانفیگ از روی لینک
         getLinkName(link) {
           if (link === this.subscriptionUrl) return 'لینک اشتراک';
           
@@ -425,12 +465,14 @@
             }
           };
           
+          // بررسی نوع پروتکل و استخراج نام
           for (const prefix in protocols) {
             if (link.startsWith(prefix)) {
               return protocols[prefix](link);
             }
           }
           
+          // روش‌های جایگزین برای استخراج نام
           try {
             const url = new URL(link);
             const params = new URLSearchParams(url.hash.slice(1));
@@ -440,6 +482,7 @@
           }
         },
         
+        // تابع کپی کردن لینک
         copyLink(link, button) {
           navigator.clipboard.writeText(link);
           button.textContent = 'کپی شد';
@@ -451,6 +494,7 @@
         }
       }));
 
+      // کامپوننت عملیات وارد کردن کانفیگ
       Alpine.data('importActions', () => ({
         importHiddify() {
           window.location.href = `hiddify://import/${'{{ user.subscription_url }}'}`;
@@ -460,6 +504,7 @@
         }
       }));
 
+      // کامپوننت نمایش نام کاربر
       Alpine.data('blockName', () => ({
         username: '{{ user.username }}',
         getText() {
@@ -467,6 +512,7 @@
         }
       }));
 
+      // کامپوننت نمایش وضعیت اشتراک
       Alpine.data('blockStatus', () => ({
         statusValue: '{{ user.status.value }}',
         getIcon() {
@@ -484,6 +530,7 @@
         }
       }));
 
+      // کامپوننت نمایش مدت زمان باقیمانده
       Alpine.data('blockDuration', () => ({
         expire: '{% if user.expire %}{{ user.expire | datetime }}{% endif %}',
         getText() {
@@ -493,6 +540,7 @@
         }
       }));
 
+      // کامپوننت نمایش میزان ترافیک
       Alpine.data('blockTraffic', () => ({
         usedTraffic: {{ user.used_traffic }},
         dataLimit: {{ user.data_limit if user.data_limit else 'null' }},
