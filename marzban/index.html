@@ -936,60 +936,40 @@
           </div>
           <div class="modal-body" x-data="{
             subscriptionUrl: '{{ user.subscription_url }}',
-            links: [{% for link in user.links %}'{{ link }}'{% if not loop.last %}, {% endif %}{% endfor %}],
+            links: {{ links | tojson | safe }},
             getLinkName(link) {
-              if (link === this.subscriptionUrl) return translations[currentLang].subscriptionLink;
-              
-              const protocols = {
-                'vmess://': link => {
-                  try { 
-                    const config = JSON.parse(atob(link.replace('vmess://', '')));
-                    return config.ps || translations[currentLang].vMessConfig;
-                  } catch { 
-                    return translations[currentLang].vMessConfig; 
-                  }
-                },
-                'vless://': link => {
-                  try {
-                    const url = new URL(link);
-                    const params = new URLSearchParams(url.hash.slice(1));
-                    return params.get('remark') || decodeURIComponent(url.hash.slice(1)) || translations[currentLang].vLessConfig;
-                  } catch {
-                    return translations[currentLang].vLessConfig;
-                  }
-                },
-                'trojan://': link => {
-                  try {
-                    const url = new URL(link);
-                    const params = new URLSearchParams(url.hash.slice(1));
-                    return params.get('remark') || translations[currentLang].trojanConfig;
-                  } catch {
-                    return translations[currentLang].trojanConfig;
-                  }
-                },
-                'ss://': link => {
-                  try {
-                    const decoded = atob(link.replace('ss://', '').split('@')[0]);
-                    const parts = decoded.split(':');
-                    return parts.length > 1 ? decodeURIComponent(parts[1]) || translations[currentLang].shadowsocksConfig : translations[currentLang].shadowsocksConfig;
-                  } catch {
-                    return translations[currentLang].shadowsocksConfig;
-                  }
-                }
-              };
-              
-              for (const prefix in protocols) {
-                if (link.startsWith(prefix)) {
-                  return protocols[prefix](link);
-                }
-              }
+              if (link === this.subscriptionUrl) return this.translations[this.currentLang].subscriptionLink;
               
               try {
-                const url = new URL(link);
-                const params = new URLSearchParams(url.hash.slice(1));
-                return params.get('remark') || decodeURIComponent(url.hash.slice(1)) || translations[currentLang].configLink;
+                if (link.startsWith('vmess://')) {
+                  const config = JSON.parse(atob(link.replace('vmess://', '')));
+                  return config.ps || this.translations[this.currentLang].vMessConfig;
+                }
+                else if (link.startsWith('vless://')) {
+                  const url = new URL(link);
+                  const params = new URLSearchParams(url.hash.slice(1));
+                  return params.get('remark') || decodeURIComponent(url.hash.slice(1)) || this.translations[this.currentLang].vLessConfig;
+                }
+                else if (link.startsWith('trojan://')) {
+                  const url = new URL(link);
+                  const params = new URLSearchParams(url.hash.slice(1));
+                  return params.get('remark') || this.translations[this.currentLang].trojanConfig;
+                }
+                else if (link.startsWith('ss://')) {
+                  const decoded = atob(link.replace('ss://', '').split('@')[0]);
+                  const parts = decoded.split(':');
+                  return parts.length > 1 ? decodeURIComponent(parts[1]) || this.translations[this.currentLang].shadowsocksConfig : this.translations[this.currentLang].shadowsocksConfig;
+                }
+                else {
+                  const url = new URL(link);
+                  const params = new URLSearchParams(url.hash.slice(1));
+                  return params.get('remark') || decodeURIComponent(url.hash.slice(1)) || this.translations[this.currentLang].configLink;
+                }
               } catch {
-                return link.includes('#') ? decodeURIComponent(link.split('#')[1]) || translations[currentLang].configLink : translations[currentLang].configLink;
+                if (link.includes('#')) {
+                  return decodeURIComponent(link.split('#')[1]) || this.translations[this.currentLang].configLink;
+                }
+                return this.translations[this.currentLang].configLink;
               }
             }
           }">
@@ -1004,7 +984,7 @@
                   <button class="config-link-copy-btn" 
                   @click="copyLink(subscriptionUrl, $el)" 
                   x-html="`<svg class='bi' width='14' height='14'><use href='#copy'></use></svg> <span>${translations[currentLang].copy}</span>`">
-          </button>
+                  </button>
                 </div>
               </div>
               
@@ -1018,7 +998,7 @@
                     <button class="config-link-copy-btn" 
                     @click="copyLink(link, $el)" 
                     x-html="`<svg class='bi' width='16' height='16'><use href='#copy'></use></svg> <span>${translations[currentLang].copy}</span>`">
-            </button>
+                    </button>
                   </div>
                 </div>
               </template>
@@ -1027,7 +1007,7 @@
         </div>
       </div>
     </div>
-    
+   
     <div class="tab-content">
       <div id="tab-pc" class="tab-pane my-tab-pane fade show active">
         <div class="row g-3">
