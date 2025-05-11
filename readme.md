@@ -1,6 +1,6 @@
 ![Preview](preview.png)
 
-## Marzneshin
+## Marzneshin [server]
 
 1. **Download the template:**
    ```sh
@@ -23,27 +23,10 @@
    marzneshin restart
    ```
 
----
+## Marzneshin [host]
 
-## Marzban
+check and use:
 
-1. **Download the template:**
-   ```sh
-   sudo wget -N -P /var/lib/marzban/templates/subscription/ https://raw.githubusercontent.com/erfjab/ClockSub/refs/heads/main/marzban/index.html
-   ```
-
-2. **Run these commands:**
-   ```sh
-   echo 'CUSTOM_TEMPLATES_DIRECTORY="/var/lib/marzban/templates/"' | sudo tee -a /opt/marzban/.env
-   echo 'SUBSCRIPTION_PAGE_TEMPLATE="subscription/index.html"' | sudo tee -a /opt/marzban/.env
-   ```
-   Or uncomment these lines in `/opt/marzban/.env`:
-   ```
-   CUSTOM_TEMPLATES_DIRECTORY="/var/lib/marzban/templates/"
-   SUBSCRIPTION_PAGE_TEMPLATE="subscription/index.html"
-   ```
-
-3. **Restart Marzban:**
-   ```sh
-   marzban restart
-   ```
+```bash
+https://raw.githubusercontent.com/erfjab/ClockSub/refs/heads/main/marzneshin/marzneshin.php
+```
