@@ -671,8 +671,8 @@ if ($isHtmlRequest) {
             fa: {
               streisand: 'Streisand',
               v2rayNG: 'V2rayNG',
-              streisandSettings: 'Streisand تنظیمات',
-              v2rayNGSettings: 'V2rayNG تنظیمات',
+              streisandSettings: 'Streisand ',
+              v2rayNGSettings: 'V2rayNG ',
               subscriptionInfo: 'صفحه کاربری',
               username: 'نام کاربری',
               status: 'وضعیت',
@@ -708,21 +708,21 @@ if ($isHtmlRequest) {
               singboxApple: 'Sing-Box اپل',
               addSubscription: 'افزودن اشتراک',
               addSubscriptionDesc: 'با توجه به برنامه ای که نصب کرده اید روی دکمه مربوط به آن کلیک کنید',
-              hiddifySettings: 'تنظیمات هیدیفای',
-              singboxSettings: 'تنظیمات سینگ باکس',
+              hiddifySettings: ' هیدیفای',
+              singboxSettings: ' سینگ باکس',
               connectAndUse: 'اتصال و استفاده',
               connectAndUseDesc: 'توصیه می‌شود روزانه آپدیت و همه‌ی کانفیگ ها بررسی و تست شوند تا به بهترین کانفیگ با بهترین پینگ وصل شوید که اتصال پایداری داشته باشید.',
               qrCode: 'کد QR',
               download: 'دانلود',
               start: 'شروع',
-              settings: 'تنظیمات',
+              settings: 'اضافه کردن به برنامه',
               enter: 'ورود'
             },
             en: {
               streisand: 'Streisand',
               v2rayNG: 'V2rayNG',
-              streisandSettings: 'Streisand Settings',
-              v2rayNGSettings: 'V2rayNG Settings',
+              streisandSettings: 'Streisand ',
+              v2rayNGSettings: 'V2rayNG ',
               subscriptionInfo: 'Subscription Page',
               username: 'Username',
               status: 'Status',
@@ -758,14 +758,14 @@ if ($isHtmlRequest) {
               singboxApple: 'Sing-box Apple',
               addSubscription: 'Add Subscription',
               addSubscriptionDesc: 'Click on the relevant button for the app you have installed',
-              hiddifySettings: 'Hiddify Settings',
-              singboxSettings: 'Sing-box Settings',
+              hiddifySettings: 'Hiddify ',
+              singboxSettings: 'Sing-box ',
               connectAndUse: 'Connect and Use',
               connectAndUseDesc: 'It is recommended to update daily and check/test all configs to connect to the best config with the lowest ping for a stable connection.',
               qrCode: 'QR Code',
               download: 'Download',
               start: 'Start',
-              settings: 'Settings',
+              settings: 'Add to app',
               enter: 'Enter'
             }
           },
@@ -866,57 +866,6 @@ if ($isHtmlRequest) {
           getStatusText(isActive) {
             return isActive ? this.translations[this.currentLang].active : this.translations[this.currentLang].disabled;
           },
-
-          getExpireText(expireStrategy, expireDate) {
-            const strategy = typeof expireStrategy === 'string'
-              ? expireStrategy.replace('UserExpireStrategy.', '').toLowerCase()
-              : '';
-
-            if (strategy === 'never') {
-              return this.translations[this.currentLang].unlimited;
-            }
-
-            if ((strategy === 'fixed_date') && expireDate) {
-              try {
-                const date = new Date(expireDate);
-                if (isNaN(date)) return '';
-
-                const today = new Date();
-                const timeDiff = date.getTime() - today.getTime();
-                const daysRemaining = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
-
-                if (this.currentLang === 'fa') {
-                  const persianDate = date.toLocaleDateString('fa-IR');
-                  if (daysRemaining > 0) {
-                    return `تا ${persianDate} (${daysRemaining} روز باقی مانده)`;
-                  } else if (daysRemaining === 0) {
-                    return `امروز آخرین روزه`;
-                  } else {
-                    return `منقضی شده در ${persianDate}`;
-                  }
-                } else {
-                  const englishDate = date.toLocaleDateString('en-US');
-                  if (daysRemaining > 0) {
-                    return `Until ${englishDate} (${daysRemaining} days left)`;
-                  } else if (daysRemaining === 0) {
-                    return `Last day today`;
-                  } else {
-                    return `Expired on ${englishDate}`;
-                  }
-                }
-              } catch (e) {
-                console.error('Date formatting error:', e);
-                return '';
-              }
-            }
-
-            if (strategy === 'start_on_first_use') {
-              return this.translations[this.currentLang].waitingForActivation;
-            }
-
-            return this.currentLang === 'fa' ? 'نامعتبر' : 'Invalid';
-          },
-
           getTrafficText(usedTraffic, dataLimit) {
             if (!dataLimit || dataLimit === 0) {
               return `<span class="traffic-value">${this.formatBytes(usedTraffic)} / ∞</span>`;
@@ -1118,31 +1067,63 @@ if ($isHtmlRequest) {
         </div>
 
         <div class="col">
-          <div class="my-block" x-data="{isActive: {{ user.is_active|lower }}}">
-            <div class="d-flex flex-row align-items-center mb-3">
-              <svg class="bi">
-                <use x-bind:href="isActive ? '#check-circle' : '#x-circle'"></use>
-              </svg>
-              <h5 class="my-text-heading mb-0" x-text="translations[currentLang].status"></h5>
-            </div>
-            <p class="text-truncate my-text-content mb-0" x-text="getStatusText(isActive)"></p>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="my-block" x-data="{
-          expireStrategy: '{{ user.expire_strategy }}',
-          expireDate: '{{ user.expire_date }}'
+        <div class="my-block" x-data="{
+          statusValue: '{{ user.status.value }}',
+          getStatusText(status) {
+            if (!status || status.startsWith('{')) return translations[currentLang].anonymous;
+            if (status === 'active') return translations[currentLang].active;
+            if (status === 'limited') return translations[currentLang].limited;
+            if (status === 'expired') return translations[currentLang].expired;
+            if (status === 'disabled') return translations[currentLang].disabled;
+            return translations[currentLang].unknown;
+          }
         }">
-            <div class="d-flex flex-row align-items-center mb-3">
-              <svg class="bi">
-                <use href="#clock"></use>
-              </svg>
-              <h5 class="my-text-heading mb-0" x-text="translations[currentLang].duration"></h5>
-            </div>
-            <p class="text-truncate my-text-content mb-0" x-text="getExpireText(expireStrategy, expireDate)"></p>
+          <div class="d-flex flex-row align-items-center mb-3">
+            <svg class="bi">
+              <use x-bind:href="statusValue === 'active' || statusValue.startsWith('{') ? '#check-circle' : '#x-circle'"></use>
+            </svg>
+            <h5 class="my-text-heading mb-0" x-text="translations[currentLang].status"></h5>
           </div>
+          <p class="text-truncate my-text-content mb-0" x-text="getStatusText(statusValue)"></p>
         </div>
+      </div>
+
+      <div class="col">
+      <div class="my-block" x-data="{
+        expire: {% if user.expire %}'{{ user.expire|datetime|safe }}'{% else %}null{% endif %},
+        getExpireText(expire) {
+          if (!expire) return translations[currentLang].unlimited;
+          if (expire.startsWith('{')) return translations[currentLang].anonymous;
+    
+          const now = new Date();
+          const expireDate = new Date(expire);
+          const diffDays = Math.ceil((expireDate - now) / (1000 * 60 * 60 * 24));
+          const formattedDate = this.currentLang === 'fa'
+            ? expireDate.toLocaleDateString('fa-IR')
+            : expireDate.toLocaleDateString('en-US');
+    
+          if (diffDays > 0) {
+            return this.currentLang === 'fa'
+              ? `${diffDays} روز\nتا ${formattedDate}`
+              : `${diffDays} days\nuntil ${formattedDate}`;
+          } else if (diffDays === 0) {
+            return this.currentLang === 'fa'
+              ? `امروز\n(${formattedDate})`
+              : `Today\n(${formattedDate})`;
+          } else {
+            return this.currentLang === 'fa'
+              ? `منقضی شده در\n${formattedDate}`
+              : `Expired on\n${formattedDate}`;
+          }
+        }
+      }">
+        <div class="d-flex flex-row align-items-center mb-3">
+          <svg class="bi"><use href="#clock"></use></svg>
+          <h5 class="my-text-heading mb-0" x-text="translations[currentLang].duration"></h5>
+        </div>
+        <p class="my-text-content mb-0" style="white-space: pre-line;" x-text="getExpireText(expire)"></p>
+      </div>
+    </div>
 
         <div class="col">
           <div class="my-block" x-data="{
@@ -1454,93 +1435,125 @@ if ($isHtmlRequest) {
         </div>
       </div>
 
-      <div class="modal my-modal fade" id="get-link-modal" tabindex="-1" aria-labelledby="linkModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header position-relative">
-              <h5 class="my-text-heading fw-semibold mb-0" id="linkModalLabel"
-                x-text="translations[currentLang].configLinks"></h5>
-              <button type="button" class="modal-close-btn" data-bs-dismiss="modal"
-                x-text="translations[currentLang].close">
-              </button>
-            </div>
-            <div class="modal-body" x-data="{
-          subscriptionUrl: '{{ user.subscription_url }}',
-          links: [
-            {% for link in links %}
-              '{{ link }}'{% if not loop.last %},{% endif %}
-            {% endfor %}
-          ],
-          getLinkName(link) {
-            if (link === this.subscriptionUrl) {
-              return this.translations[this.currentLang].subscriptionLink;
-            }
-
-            if (link.includes('#')) {
-              return decodeURIComponent(link.split('#')[1]);
-            }
-
-            return this.translations[this.currentLang].configLink;
-          }
-        }">
-              <p class="my-text-content mb-3" x-text="translations[currentLang].configLinksDesc"></p>
-              <div class="mb-3">
-                <div class="config-link">
-                  <div class="config-link-name" x-text="translations[currentLang].subscriptionLink"></div>
-                  <div class="config-link-buttons">
-                    <button class="config-link-qr-btn"
-                      @click="$dispatch('show-qr', {url: subscriptionUrl, name: translations[currentLang].subscriptionLink})">
-                      <svg class="bi">
-                        <use href="#qr-code"></use>
-                      </svg>
-                    </button>
-                    <button class="config-link-copy-btn" @click="copyLink(subscriptionUrl, $el)"
-                      x-html="`<svg class='bi' width='14' height='14'><use href='#copy'></use></svg> <span>${translations[currentLang].copy}</span>`">
-                    </button>
-                  </div>
-                </div>
-
-                <template x-for="(link, index) in links" :key="index">
-                  <div class="config-link">
-                    <div class="config-link-name" x-text="getLinkName(link)"></div>
-                    <div class="config-link-buttons">
-                      <button class="config-link-qr-btn"
-                        @click="$dispatch('show-qr', {url: link, name: getLinkName(link)})">
-                        <svg class="bi">
-                          <use href="#qr-code"></use>
-                        </svg>
-                      </button>
-                      <button class="config-link-copy-btn" @click="copyLink(link, $el)"
-                        x-html="`<svg class='bi' width='16' height='16'><use href='#copy'></use></svg> <span>${translations[currentLang].copy}</span>`">
-                      </button>
-                    </div>
-                  </div>
-                </template>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal qr-modal fade" id="qr-modal" tabindex="-1" aria-labelledby="qrModalLabel" x-data="{ title: '' }"
-      @show-qr-title.window="title = $event.detail">
+      <div class="modal my-modal fade" id="get-link-modal" tabindex="-1" aria-labelledby="linkModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="my-text-heading" id="qrModalLabel" x-text="title"></h5>
-            <button type="button" class="modal-close-btn" data-bs-dismiss="modal">
-              <span x-text="$store.app.translations[$store.app.currentLang].close"></span>
+          <div class="modal-header position-relative">
+            <h5 class="my-text-heading fw-semibold mb-0" id="linkModalLabel" x-text="translations[currentLang].configLinks"></h5>
+            <button type="button" 
+                    class="modal-close-btn" 
+                    data-bs-dismiss="modal"
+                    x-text="translations[currentLang].close">
             </button>
           </div>
-          <div class="modal-body">
-            <div id="qr-canvas"></div>
+          <div class="modal-body" x-data="{
+            subscriptionUrl: '{{ user.subscription_url }}',
+            links: [{% for link in user.links %}'{{ link }}'{% if not loop.last %}, {% endif %}{% endfor %}],
+            getLinkName(link) {
+              if (link === this.subscriptionUrl) return translations[currentLang].subscriptionLink;
+            
+              const protocols = {
+                'vmess://': link => {
+                  try {
+                    const config = JSON.parse(atob(link.replace('vmess://', '')));
+                    return config.ps || translations[currentLang].vMessConfig;
+                  } catch {
+                    return translations[currentLang].vMessConfig;
+                  }
+                },
+                'vless://': link => {
+                  try {
+                    const url = new URL(link);
+                    const params = new URLSearchParams(url.hash.slice(1));
+                    return params.get('remark') || decodeURIComponent(url.hash.slice(1)) || translations[currentLang].vLessConfig;
+                  } catch {
+                    return translations[currentLang].vLessConfig;
+                  }
+                },
+                'trojan://': link => {
+                  try {
+                    const url = new URL(link);
+                    const params = new URLSearchParams(url.hash.slice(1));
+                    return params.get('remark') || decodeURIComponent(url.hash.slice(1)) || translations[currentLang].trojanConfig;
+                  } catch {
+                    return translations[currentLang].trojanConfig;
+                  }
+                },
+                'ss://': link => {
+                  try {
+                    const raw = link.replace('ss://', '');
+                    const beforeHash = raw.split('#')[0];
+                    const remark = link.includes('#') ? decodeURIComponent(link.split('#')[1]) : '';
+            
+                    let decoded = '';
+                    if (beforeHash.includes('@')) {
+                      decoded = atob(beforeHash.split('@')[0]); 
+                    } else {
+                      decoded = atob(beforeHash);
+                    }
+            
+                    if (remark) {
+                      return remark;
+                    }
+            
+                    const parts = decoded.split(':');
+                    return parts.length > 1 ? decodeURIComponent(parts[1]) : translations[currentLang].shadowsocksConfig;
+                  } catch {
+                    return translations[currentLang].shadowsocksConfig;
+                  }
+                }
+              };
+            
+              for (const prefix in protocols) {
+                if (link.startsWith(prefix)) {
+                  return protocols[prefix](link);
+                }
+              }
+            
+              try {
+                const url = new URL(link);
+                const params = new URLSearchParams(url.hash.slice(1));
+                return params.get('remark') || decodeURIComponent(url.hash.slice(1)) || translations[currentLang].configLink;
+              } catch {
+                return link.includes('#') ? decodeURIComponent(link.split('#')[1]) || translations[currentLang].configLink : translations[currentLang].configLink;
+              }
+            }
+            
+          }">
+            <p class="my-text-content mb-3" x-text="translations[currentLang].configLinksDesc"></p>
+            <div class="mb-3">
+              <div class="config-link">
+                <div class="config-link-name" x-text="translations[currentLang].subscriptionLink"></div>
+                <div class="config-link-buttons">
+                  <button class="config-link-qr-btn" @click="$dispatch('show-qr', {url: subscriptionUrl, name: translations[currentLang].subscriptionLink})">
+                    <svg class="bi"><use href="#qr-code"></use></svg>
+                  </button>
+                  <button class="config-link-copy-btn" 
+                  @click="copyLink(subscriptionUrl, $el)" 
+                  x-html="`<svg class='bi' width='14' height='14'><use href='#copy'></use></svg> <span>${translations[currentLang].copy}</span>`">
+          </button>
+                </div>
+              </div>
+              
+              <template x-for="(link, index) in links" :key="index">
+                <div class="config-link">
+                  <div class="config-link-name" x-text="getLinkName(link)"></div>
+                  <div class="config-link-buttons">
+                    <button class="config-link-qr-btn" @click="$dispatch('show-qr', {url: link, name: getLinkName(link)})">
+                      <svg class="bi"><use href="#qr-code"></use></svg>
+                    </button>
+                    <button class="config-link-copy-btn" 
+                    @click="copyLink(link, $el)" 
+                    x-html="`<svg class='bi' width='16' height='16'><use href='#copy'></use></svg> <span>${translations[currentLang].copy}</span>`">
+            </button>
+                  </div>
+                </div>
+              </template>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </body>
 
   </html>
   <?php
