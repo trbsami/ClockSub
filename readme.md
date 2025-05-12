@@ -23,7 +23,7 @@
 check and use:
 
 ```bash
-sudo wget -N -P /var/lib/marzneshin/templates/subscription/ https://raw.githubusercontent.com/trbsami/ClockSub/main/marzban/marzban.php
+sudo wget -N -P /var/lib/marzban/templates/subscription/ https://raw.githubusercontent.com/trbsami/ClockSub/main/marzban/marzban.php
 ```
 
 **Our channel on Telegram :**  
