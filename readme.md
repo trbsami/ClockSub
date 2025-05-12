@@ -8,8 +8,6 @@
    ``` ```
 
 2. **Run these commands:**
-   ```sh
-   ```
    ```bash
    echo 'CUSTOM_TEMPLATES_DIRECTORY="/var/lib/marzban/templates/"' | sudo tee -a /opt/marzban/.env
    echo 'SUBSCRIPTION_PAGE_TEMPLATE="subscription/index.html"' | sudo tee -a /opt/marzban/.env
