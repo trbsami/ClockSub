@@ -4,7 +4,7 @@
 
 1. **Download the template:**
    ```sh
-   sudo wget -N -P /var/lib/marzneshin/templates/subscription/ https://raw.githubusercontent.com/trbsami/ClockSub/main/marzban/index.html
+   sudo wget -N -P /var/lib/marzban/templates/subscription/ https://raw.githubusercontent.com/trbsami/ClockSub/main/marzban/index.html
 
    ``` 
 
