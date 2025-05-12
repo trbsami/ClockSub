@@ -1,6 +1,6 @@
 ![Preview](preview.png)
 
-## Marzneshin [server]
+## Marzban [server]
 
 1. **Download the template:**
    ```sh
@@ -13,7 +13,7 @@
    echo 'CUSTOM_TEMPLATES_DIRECTORY="/var/lib/marzban/templates/"' | sudo tee -a /opt/marzban/.env
    echo 'SUBSCRIPTION_PAGE_TEMPLATE="subscription/index.html"' | sudo tee -a /opt/marzban/.env
 
-3. **Restart Marzneshin:**
+3. **Restart Marzban:**
    ```sh
    marzban restart
    ```
