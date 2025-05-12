@@ -4,30 +4,25 @@
 
 1. **Download the template:**
    ```sh
-[   sudo wget -N -P /var/lib/marzneshin/templates/subscription/ https://raw.githubusercontent.com/erfjab/ClockSub/refs/heads/main/marzneshin/index.html
-](https://raw.githubusercontent.com/trbsami/ClockSub/main/marzban/index.html
-)   ```
+   https://raw.githubusercontent.com/trbsami/ClockSub/main/marzban/index.html
+   ``` ```
 
 2. **Run these commands:**
    ```sh
-   echo 'CUSTOM_TEMPLATES_DIRECTORY="/var/lib/marzneshin/templates/"' | sudo tee -a /etc/opt/marzneshin/.env
-   echo 'SUBSCRIPTION_PAGE_TEMPLATE="subscription/index.html"' | sudo tee -a /etc/opt/marzneshin/.env
    ```
-   Or uncomment these lines in `/etc/opt/marzneshin/.env`:
-   ```
-   CUSTOM_TEMPLATES_DIRECTORY="/var/lib/marzneshin/templates/"
-   SUBSCRIPTION_PAGE_TEMPLATE="subscription/index.html"
-   ```
+   ```bash
+   echo 'CUSTOM_TEMPLATES_DIRECTORY="/var/lib/marzban/templates/"' | sudo tee -a /opt/marzban/.env
+   echo 'SUBSCRIPTION_PAGE_TEMPLATE="subscription/index.html"' | sudo tee -a /opt/marzban/.env
 
 3. **Restart Marzneshin:**
    ```sh
-   marzneshin restart
+   marzban restart
    ```
 
-## Marzneshin [host]
+## Marzban [host]
 
 check and use:
 
 ```bash
-https://raw.githubusercontent.com/erfjab/ClockSub/refs/heads/main/marzneshin/marzneshin.php
+sudo wget -N -P /var/lib/marzneshin/templates/subscription/ https://raw.githubusercontent.com/trbsami/ClockSub/main/marzban/marzban.php
 ```
