@@ -24,3 +24,7 @@ check and use:
 ```bash
 sudo wget -N -P /var/lib/marzneshin/templates/subscription/ https://raw.githubusercontent.com/trbsami/ClockSub/main/marzban/marzban.php
 ```
+
+**Our channel on Telegram :**  
+trbSami   [![Telegram](https://img.shields.io/badge/Telegram-26A5E4?logo=telegram&logoColor=white)](https://t.me/trbsami)
+
